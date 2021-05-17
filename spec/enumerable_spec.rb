@@ -199,4 +199,25 @@ describe Enumerable do
     end
   end
 
+  describe "#my_map" do
+    context "when neither proc nor block is given" do
+      it "returns an enumerator" do
+        expect(my_arr.my_map).to be_an Enumerator
+      end
+    end
+
+    context "when proc is provided" do
+      it "maps the proc to self" do
+        new_proc = Proc.new {|x| x * 2}
+        expect(my_arr.my_map(new_proc)).to eql([2, 4, 6, 8])
+      end
+    end
+
+    context "when block is given" do
+      it "evaluates the block" do
+        expect(my_range.my_map {|x| x + 2}).to eql([3, 4, 5])
+      end
+    end
+  end
+
 end
