@@ -91,13 +91,13 @@ describe Enumerable do
 
     context "when argument is a Class" do
       it "check if all items belong to the Class" do
-        expect([1, 2i, 3.14].all?(Numeric)).to eql(true)
+        expect([1, 2i, 3.14].my_all?(Numeric)).to eql(true)
       end
     end
 
     context "when neither block nor parameter is given" do
       it "if all items are truthy" do
-        expect([nil, true, 99].all?).to eql(false)
+        expect([nil, true, 99].my_all?).to eql(false)
       end
     end
   end
@@ -132,6 +132,46 @@ describe Enumerable do
     context "when neither block nor parameter is given" do
       it "if any item is truthy" do
         expect([nil, true, 99].any?).to eql(true)
+      end
+    end
+  end
+
+  describe "#my_none?" do
+    context "when block given" do
+      context "and none of items is true" do
+        it "returns the false" do
+          expect(%w[ant bear cat].my_none? { |word| word.length >= 5 }).to eql(true)
+        end
+      end
+
+      context "and no item is flase" do
+        it "return true" do
+          expect(%w[ant bear cat].my_none? { |word| word.length >= 4 }).to eql(false)
+        end
+      end
+    end
+
+    context "when argument is a Regex" do
+      it "checks if no item matches the pattern" do
+        expect(%w[ant bear cat].my_none?(/d/)).to eql(true)
+      end
+    end
+
+    context "when argument is a Class" do
+      it "check if no item belongs to the Class" do
+        expect([1, 3.14, 42].my_none?(Float)).to eql(false)
+      end
+    end
+
+    context "when no item is truthy" do
+      it "returns true" do
+        expect([nil, false].my_none?).to eql(true)
+      end
+    end
+
+    context "when neither block nor parameter is given" do
+      it "if all items are truthy" do
+        expect([].my_none?).to eql(true)
       end
     end
   end
