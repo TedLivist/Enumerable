@@ -3,6 +3,7 @@ require_relative '../enumerable.rb'
 describe Enumerable do
   my_arr = [1,2,3,4]
   my_range = (1..3)
+  my_hash = {:name => 'Teddy', :country => 'Nigeria'}
   describe '#my_each' do
     context 'when no block is given' do
       it 'returns an enumerator' do
@@ -40,6 +41,14 @@ describe Enumerable do
           each_index_range = []
           my_range.my_each_with_index {|v, i| each_index_range << "#{v} - #{i}"}
           expect(each_index_range).to eql(["1 - 0", "2 - 1", "3 - 2"])
+        end
+      end
+
+      context "and self is a hash" do
+        it "evaluates the block" do
+          each_index_hash = []
+          my_hash.my_each_with_index {|v, i| each_index_hash << "#{v[0]} - #{i}"}
+          expect(each_index_hash).to eql(["name - 0", "country - 1"])
         end
       end
     end

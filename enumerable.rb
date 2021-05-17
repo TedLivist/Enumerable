@@ -174,5 +174,5 @@ some_arr.my_each_with_index {|v, i| init << [v, i]}
 print init
 puts ""
 init_range = []
-(1..3).my_each_with_index {|v, i| init_range << "#{v} - #{i}"}
+{:name => 'Teddy', :country => 'Nigeria'}.my_each_with_index {|v, i| init_range << "#{v[0]} - #{i}"}
 print init_range
