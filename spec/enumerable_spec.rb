@@ -69,7 +69,7 @@ describe Enumerable do
   end
 
   describe "#my_all?" do
-    context "when self is an array of string and block given" do
+    context "when block given" do
       context "and all items are true" do
         it "returns the true" do
           expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
@@ -96,8 +96,42 @@ describe Enumerable do
     end
 
     context "when neither block nor parameter is given" do
-      it "if all items are true" do
+      it "if all items are truthy" do
         expect([nil, true, 99].all?).to eql(false)
+      end
+    end
+  end
+
+  describe "#my_any?" do
+    context "when block given" do
+      context "and any item is true" do
+        it "returns the true" do
+          expect(%w[ant bear cat].my_any? { |word| word.length >= 3 }).to eql(true)
+        end
+      end
+
+      context "and any item is false" do
+        it "return false" do
+          expect(%w[ant bear cat].my_any? { |word| word.length >= 4 }).to eql(true)
+        end
+      end
+    end
+
+    context "when argument is a Regex" do
+      it "checks if any item matches the pattern" do
+        expect(%w[ant bear cat].my_any?(/t/)).to eql(true)
+      end
+    end
+
+    context "when argument is a Class" do
+      it "check if any item belongs to the Class" do
+        expect([1, 2i, 3.14].any?(Numeric)).to eql(true)
+      end
+    end
+
+    context "when neither block nor parameter is given" do
+      it "if any item is truthy" do
+        expect([nil, true, 99].any?).to eql(true)
       end
     end
   end
