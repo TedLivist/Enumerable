@@ -169,8 +169,7 @@ def multiply_els(arr)
 end
 
 some_arr = [1,2,3,4]
-init = []
-some_arr.my_each_with_index {|v, i| init << [v, i]}
+init = some_arr.my_select {|i| i >= 3 }
 print init
 puts ""
 init_range = []

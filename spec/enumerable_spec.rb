@@ -52,6 +52,14 @@ describe Enumerable do
         end
       end
     end
-
   end
+
+  describe "#select" do
+    context "when no block is given" do
+      it "returns an enumerator" do
+        expect(my_arr.my_select).to be_an Enumerator
+      end
+    end
+  end
+
 end
