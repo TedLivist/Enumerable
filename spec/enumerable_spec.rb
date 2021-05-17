@@ -2,6 +2,7 @@ require_relative '../enumerable.rb'
 
 describe Enumerable do
   my_arr = [1,2,3,4]
+  my_range = (1..3)
   describe '#my_each' do
     context 'when no block is given' do
       it 'returns an enumerator' do
@@ -26,11 +27,19 @@ describe Enumerable do
     end
 
     context "when block is given" do
-      context "with self as an array" do
-        it "evaluates the block as an array" do
-          init_arr = []
-          my_arr.my_each_with_index {|v, i| init_arr << [v, i]}
-          expect(init_arr).to eql([[1, 0], [2, 1], [3, 2], [4, 3]])
+      context "and self is an array" do
+        it "evaluates the block" do
+          each_index_arr = []
+          my_arr.my_each_with_index {|v, i| each_index_arr << [v, i]}
+          expect(each_index_arr).to eql([[1, 0], [2, 1], [3, 2], [4, 3]])
+        end
+      end
+
+      context "and self is a range" do
+        it "evaluates the block" do
+          each_index_range = []
+          my_range.my_each_with_index {|v, i| each_index_range << "#{v} - #{i}"}
+          expect(each_index_range).to eql(["1 - 0", "2 - 1", "3 - 2"])
         end
       end
     end

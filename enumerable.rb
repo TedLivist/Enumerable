@@ -168,7 +168,11 @@ def multiply_els(arr)
   arr.my_inject(1) { |multiply, num| multiply * num }
 end
 
-some_arr = [1,2,3,4,5,6]
+some_arr = [1,2,3,4]
 init = []
 some_arr.my_each_with_index {|v, i| init << [v, i]}
 print init
+puts ""
+init_range = []
+(1..3).my_each_with_index {|v, i| init_range << "#{v} - #{i}"}
+print init_range
