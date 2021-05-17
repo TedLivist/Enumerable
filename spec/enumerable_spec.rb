@@ -226,6 +226,30 @@ describe Enumerable do
         expect(my_range.my_inject(:+)).to eql(6)
       end
     end
+
+    context "when a number and multiply symbols are arguments" do
+      it "multiplies the numbers" do
+        expect(my_arr.my_inject(1, :*)).to eql(24)
+      end
+    end
+
+    context "when a block is given" do
+      it "sums all items" do
+        expect(my_arr.my_inject {|s, n| s + n}).to eql(10)
+      end
+    end
+
+    context "when a block and an argument are given" do
+      it "multiplies the numbers" do
+        expect(my_arr.my_inject(1) {|m, n| m * n}).to eql(24)
+      end
+    end
+
+    context "when self is array of strings" do
+      it "returns the longest string" do
+        expect(%w{ cat sheep bear }.inject {|memo, word| memo.length > word.length ? memo : word}).to eql("sheep")
+      end
+    end
   end
 
 end
