@@ -220,4 +220,12 @@ describe Enumerable do
     end
   end
 
+  describe "#my_inject" do
+    context "when plus symbol is passed as argument" do
+      it "adds all items" do
+        expect(my_range.my_inject(:+)).to eql(6)
+      end
+    end
+  end
+
 end
