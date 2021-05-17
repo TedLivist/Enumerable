@@ -170,5 +170,5 @@ end
 
 some_arr = [1,2,3,4,5,6]
 init = []
-some_arr.my_each {|i| init << i * 2}
+some_arr.my_each_with_index {|v, i| init << [v, i]}
 print init
