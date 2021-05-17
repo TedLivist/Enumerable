@@ -8,5 +8,14 @@ describe Enumerable do
         expect(my_arr.my_each).to be_an Enumerator
       end
     end
+
+    context 'when block is given' do
+      it 'evaluates the block' do
+        init_arr = []
+        my_arr.my_each {|i| init_arr << i * 2}
+        expect(init_arr).to eql([2,4,6,8,10,12])
+      end
+    end
+
   end
 end
