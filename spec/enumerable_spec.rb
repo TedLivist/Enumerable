@@ -176,4 +176,27 @@ describe Enumerable do
     end
   end
 
+  describe "#my_count" do
+    context "when block is given" do
+      it "evaluates the block" do
+        my_counter = my_arr.my_count {|x| x > 2 }
+        expect(my_counter).to eql(2)
+      end
+    end
+
+    context "when argument is provided" do
+      it "counts the items equal to argment" do
+        my_counter = my_arr.my_count(2)
+        expect(my_counter).to eql(1)
+      end
+    end
+
+    context "neither block nor arguments are given" do
+      it "counts the items of self" do
+        my_counter = my_arr.my_count
+        expect(my_counter).to eql(4)
+      end
+    end
+  end
+
 end
