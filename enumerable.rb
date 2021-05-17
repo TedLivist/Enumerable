@@ -167,13 +167,3 @@ end
 def multiply_els(arr)
   arr.my_inject(1) { |multiply, num| multiply * num }
 end
-
-# some_arr = [1,2,3,4]
-# init = some_arr.my_select {|i| i >= 3 }
-# print init
-# puts ""
-# init_range = []
-# {:name => 'Teddy', :country => 'Nigeria'}.my_each_with_index {|v, i| init_range << "#{v[0]} - #{i}"}
-# print init_range
-
-p %w[ant bear cat].my_all? { |word| word.length >= 3 }
