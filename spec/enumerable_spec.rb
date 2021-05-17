@@ -60,6 +60,12 @@ describe Enumerable do
         expect(my_arr.my_select).to be_an Enumerator
       end
     end
+
+    context "when block is given" do
+      it "evaluates the block" do
+        expect(my_arr.my_select {|i| i >= 3}).to eql([3, 4])
+      end
+    end
   end
 
 end
