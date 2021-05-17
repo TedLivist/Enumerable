@@ -83,9 +83,17 @@ describe Enumerable do
       end
     end
 
-    context "when self is an array of strings and parameter is a Regex" do
-      it "checks if all items match the pattern" do
-        expect(%w[ant bear cat].my_all?(/t/)).to eql(false)
+    context "when self is an array of strings" do
+      context "when argument is a Regex" do
+        it "checks if all items match the pattern" do
+          expect(%w[ant bear cat].my_all?(/t/)).to eql(false)
+        end
+      end
+
+      context "when argument is a Class" do
+        it "check if all items belong to the Class" do
+          expect([1, 2i, 3.14].all?(Numeric)).to eql(true)
+        end
       end
     end
   end
