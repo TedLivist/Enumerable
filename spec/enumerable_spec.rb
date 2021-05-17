@@ -68,4 +68,26 @@ describe Enumerable do
     end
   end
 
+  describe "#my_all?" do
+    context "when self is an array of string and block given" do
+      context "and all items are true" do
+        it "returns the true" do
+          expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
+        end
+      end
+
+      context "and any item is false" do
+        it "return false" do
+          expect(%w[ant bear cat].my_all? { |word| word.length >= 4 }).to eql(false)
+        end
+      end
+    end
+
+    context "when self is an array of strings and parameter is a Regex" do
+      it "checks if all items match the pattern" do
+        expect(%w[ant bear cat].my_all?(/t/)).to eql(false)
+      end
+    end
+  end
+
 end
