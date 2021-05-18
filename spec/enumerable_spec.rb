@@ -72,32 +72,32 @@ describe Enumerable do
     context "when block given" do
       context "and all items are true" do
         it "returns the true" do
-          expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to eql(true)
+          expect(%w[ant bear cat].my_all? { |word| word.length >= 3 }).to be(true)
         end
       end
 
       context "and any item is false" do
         it "return false" do
-          expect(%w[ant bear cat].my_all? { |word| word.length >= 4 }).to eql(false)
+          expect(%w[ant bear cat].my_all? { |word| word.length >= 4 }).to be(false)
         end
       end
     end
 
     context "when argument is a Regex" do
       it "checks if all items match the pattern" do
-        expect(%w[ant bear cat].my_all?(/t/)).to eql(false)
+        expect(%w[ant bear cat].my_all?(/t/)).to be(false)
       end
     end
 
     context "when argument is a Class" do
       it "check if all items belong to the Class" do
-        expect([1, 2i, 3.14].my_all?(Numeric)).to eql(true)
+        expect([1, 2i, 3.14].my_all?(Numeric)).to be(true)
       end
     end
 
     context "when neither block nor parameter is given" do
       it "if all items are truthy" do
-        expect([nil, true, 99].my_all?).to eql(false)
+        expect([nil, true, 99].my_all?).to be(false)
       end
     end
   end
@@ -106,32 +106,32 @@ describe Enumerable do
     context "when block given" do
       context "and any item is true" do
         it "returns the true" do
-          expect(%w[ant bear cat].my_any? { |word| word.length >= 3 }).to eql(true)
+          expect(%w[ant bear cat].my_any? { |word| word.length >= 3 }).to be(true)
         end
       end
 
       context "and any item is false" do
         it "return false" do
-          expect(%w[ant bear cat].my_any? { |word| word.length >= 4 }).to eql(true)
+          expect(%w[ant bear cat].my_any? { |word| word.length >= 4 }).to be(true)
         end
       end
     end
 
     context "when argument is a Regex" do
       it "checks if any item matches the pattern" do
-        expect(%w[ant bear cat].my_any?(/t/)).to eql(true)
+        expect(%w[ant bear cat].my_any?(/t/)).to be(true)
       end
     end
 
     context "when argument is a Class" do
       it "check if any item belongs to the Class" do
-        expect([1, 2i, 3.14].any?(Numeric)).to eql(true)
+        expect([1, 2i, 3.14].any?(Numeric)).to be(true)
       end
     end
 
     context "when neither block nor parameter is given" do
       it "if any item is truthy" do
-        expect([nil, true, 99].any?).to eql(true)
+        expect([nil, true, 99].any?).to be(true)
       end
     end
   end
@@ -140,38 +140,38 @@ describe Enumerable do
     context "when block given" do
       context "and none of items is true" do
         it "returns the false" do
-          expect(%w[ant bear cat].my_none? { |word| word.length >= 5 }).to eql(true)
+          expect(%w[ant bear cat].my_none? { |word| word.length >= 5 }).to be(true)
         end
       end
 
-      context "and no item is flase" do
+      context "and no item is false" do
         it "return true" do
-          expect(%w[ant bear cat].my_none? { |word| word.length >= 4 }).to eql(false)
+          expect(%w[ant bear cat].my_none? { |word| word.length >= 4 }).to be(false)
         end
       end
     end
 
     context "when argument is a Regex" do
       it "checks if no item matches the pattern" do
-        expect(%w[ant bear cat].my_none?(/d/)).to eql(true)
+        expect(%w[ant bear cat].my_none?(/d/)).to be(true)
       end
     end
 
     context "when argument is a Class" do
       it "check if no item belongs to the Class" do
-        expect([1, 3.14, 42].my_none?(Float)).to eql(false)
+        expect([1, 3.14, 42].my_none?(Float)).to be(false)
       end
     end
 
     context "when no item is truthy" do
       it "returns true" do
-        expect([nil, false].my_none?).to eql(true)
+        expect([nil, false].my_none?).to be(true)
       end
     end
 
     context "when neither block nor parameter is given" do
       it "if all items are truthy" do
-        expect([].my_none?).to eql(true)
+        expect([].my_none?).to be(true)
       end
     end
   end
@@ -186,7 +186,7 @@ describe Enumerable do
 
     context "when argument is provided" do
       it "counts the items equal to argment" do
-        my_counter = my_arr.my_count(2)
+        my_counter = my_arr.my_count(2) #=> [1,2,3,4]
         expect(my_counter).to eql(1)
       end
     end
@@ -221,13 +221,13 @@ describe Enumerable do
   end
 
   describe "#my_inject" do
-    context "when plus symbol is passed as argument" do
+    context "when only plus symbol is passed as argument" do
       it "adds all items" do
         expect(my_range.my_inject(:+)).to eql(6)
       end
     end
 
-    context "when a number and multiply symbols are arguments" do
+    context "when a number and multiply symbol are arguments" do
       it "multiplies the numbers" do
         expect(my_arr.my_inject(1, :*)).to eql(24)
       end
