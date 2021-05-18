@@ -247,7 +247,7 @@ describe Enumerable do
 
     context 'when self is array of strings' do
       it 'returns the longest string' do
-        expect(%w{ cat sheep bear }.inject {|memo, word| memo.length > word.length ? memo : word}).to eql('sheep')
+        expect(%w[cat sheep bear].inject {|memo, word| memo.length > word.length ? memo : word}).to eql('sheep')
       end
     end
   end
