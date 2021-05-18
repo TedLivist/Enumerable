@@ -1,9 +1,9 @@
-require_relative '../enumerable.rb'
+require_relative '../enumerable'
 
 describe Enumerable do
   my_arr = [1, 2, 3, 4]
   my_range = (1..3)
-  my_hash = {:name => 'Teddy', :country => 'Nigeria'}
+  my_hash = { name: 'Teddy', country: 'Nigeria' }
   describe '#my_each' do
     context 'when no block is given' do
       it 'returns an enumerator' do
@@ -14,7 +14,7 @@ describe Enumerable do
     context 'when block is given' do
       it 'evaluates the block' do
         init_arr = []
-        my_arr.my_each {|i| init_arr << i * 2}
+        my_arr.my_each { |i| init_arr << i * 2 }
         expect(init_arr).to eql([2, 4, 6, 8])
       end
     end
@@ -31,7 +31,7 @@ describe Enumerable do
       context 'and self is an array' do
         it 'evaluates the block' do
           each_index_arr = []
-          my_arr.my_each_with_index {|v, i| each_index_arr << [v, i]}
+          my_arr.my_each_with_index { |v, i| each_index_arr << [v, i] }
           expect(each_index_arr).to eql([[1, 0], [2, 1], [3, 2], [4, 3]])
         end
       end
@@ -39,16 +39,16 @@ describe Enumerable do
       context 'and self is a range' do
         it 'evaluates the block' do
           each_index_range = []
-          my_range.my_each_with_index {|v, i| each_index_range << "#{v} - #{i}"}
-          expect(each_index_range).to eql(["1 - 0", "2 - 1", "3 - 2"])
+          my_range.my_each_with_index { |v, i| each_index_range << "#{v} - #{i}" }
+          expect(each_index_range).to eql(['1 - 0', '2 - 1', '3 - 2'])
         end
       end
 
       context 'and self is a hash' do
         it 'evaluates the block' do
           each_index_hash = []
-          my_hash.my_each_with_index {|v, i| each_index_hash << "#{v[0]} - #{i}"}
-          expect(each_index_hash).to eql(["name - 0", "country - 1"])
+          my_hash.my_each_with_index { |v, i| each_index_hash << "#{v[0]} - #{i}" }
+          expect(each_index_hash).to eql(['name - 0', 'country - 1'])
         end
       end
     end
@@ -63,7 +63,7 @@ describe Enumerable do
 
     context 'when block is given' do
       it 'evaluates the block' do
-        expect(my_arr.my_select {|i| i >= 3}).to eql([3, 4])
+        expect(my_arr.my_select { |i| i >= 3 }).to eql([3, 4])
       end
     end
   end
@@ -179,14 +179,14 @@ describe Enumerable do
   describe '#my_count' do
     context 'when block is given' do
       it 'evaluates the block' do
-        my_counter = my_arr.my_count {|x| x > 2 }
+        my_counter = my_arr.my_count { |x| x > 2 }
         expect(my_counter).to eql(2)
       end
     end
 
     context 'when argument is provided' do
       it 'counts the items equal to argment' do
-        my_counter = my_arr.my_count(2) #=> [1,2,3,4]
+        my_counter = my_arr.my_count(2)
         expect(my_counter).to eql(1)
       end
     end
@@ -208,14 +208,14 @@ describe Enumerable do
 
     context 'when proc is provided' do
       it 'maps the proc to self' do
-        new_proc = Proc.new {|x| x * 2}
+        new_proc = proc { |x| x * 2 }
         expect(my_arr.my_map(new_proc)).to eql([2, 4, 6, 8])
       end
     end
 
     context 'when block is given' do
       it 'evaluates the block' do
-        expect(my_range.my_map {|x| x + 2}).to eql([3, 4, 5])
+        expect(my_range.my_map { |x| x + 2 }).to eql([3, 4, 5])
       end
     end
   end
@@ -235,21 +235,20 @@ describe Enumerable do
 
     context 'when a block is given' do
       it 'sums all items' do
-        expect(my_arr.my_inject {|s, n| s + n}).to eql(10)
+        expect(my_arr.my_inject { |s, n| s + n }).to eql(10)
       end
     end
 
     context 'when a block and an argument are given' do
       it 'multiplies the numbers' do
-        expect(my_arr.my_inject(1) {|m, n| m * n}).to eql(24)
+        expect(my_arr.my_inject(1) { |m, n| m * n }).to eql(24)
       end
     end
 
     context 'when self is array of strings' do
       it 'returns the longest string' do
-        expect(%w[cat sheep bear].inject {|memo, word| memo.length > word.length ? memo : word}).to eql('sheep')
+        expect(%w[cat sheep bear].inject { |memo, word| memo.length > word.length ? memo : word }).to eql('sheep')
       end
     end
   end
-
 end
