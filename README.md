@@ -27,6 +27,14 @@ Clone this repository on to your local PC
 - Clone the repository with the command: `git clone (copied link)`; like so: `git clone https://github.com/1v4n4/Enumerable.git`
 - After the clone, type in the command `cd Enumerables` to access the directory on the terminal
 
+## Setup test
+
+### To setup the Rspec testing process
+ 
+ - While in the directory on the terminal run `bundle install`
+ - I you do not have the `rspec` gem installed, run `gem install rspec` on the terminal to install it
+ - Finally, to run the tests simply type `rspec`to run test on the `Enumerable` module
+
 ## Authors
 
 👤 **Teddy-Livingstone Ememandu**
