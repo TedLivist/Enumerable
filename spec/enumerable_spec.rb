@@ -1,7 +1,7 @@
 require_relative '../enumerable.rb'
 
 describe Enumerable do
-  my_arr = [1,2,3,4]
+  my_arr = [1, 2, 3, 4]
   my_range = (1..3)
   my_hash = {:name => 'Teddy', :country => 'Nigeria'}
   describe '#my_each' do
@@ -15,7 +15,7 @@ describe Enumerable do
       it 'evaluates the block' do
         init_arr = []
         my_arr.my_each {|i| init_arr << i * 2}
-        expect(init_arr).to eql([2,4,6,8])
+        expect(init_arr).to eql([2, 4, 6, 8])
       end
     end
   end
