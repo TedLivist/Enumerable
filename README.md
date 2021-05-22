@@ -32,7 +32,7 @@ Clone this repository on to your local PC
 ### To setup the Rspec testing process
  
  - While in the directory on the terminal run `bundle install`
- - I you do not have the `rspec` gem installed, run `gem install rspec` on the terminal to install it
+ - If you do not have the `rspec` gem installed, run `gem install rspec` on the terminal to install it
  - Finally, to run the tests simply type `rspec`to run test on the `Enumerable` module
 
 ## Authors
